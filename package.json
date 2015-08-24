@@ -1,0 +1,28 @@
+{
+  "name": "node-sass-css-importer",
+  "version": "0.0.1",
+  "description": "css importer for node-sass",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fetch/node-sass-css-importer.git"
+  },
+  "keywords": [
+    "node",
+    "sass",
+    "css",
+    "import"
+  ],
+  "author": "Koen Punt <koen@fetch.nl>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fetch/node-sass-css-importer/issues"
+  },
+  "homepage": "https://github.com/fetch/node-sass-css-importer",
+  "dependencies": {
+    "node-sass": "^3.2.0"
+  }
+}
