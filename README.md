@@ -1,4 +1,4 @@
-# Node Sass CSS importer ![Travis CS](https://api.travis-ci.org/fetch/node-sass-css-importer.svg) ![npmjs](https://badge.fury.io/js/node-sass-css-importer.svg)
+# Node Sass CSS importer [![Build Status](https://travis-ci.org/fetch/node-sass-css-importer.svg?branch=master)](https://travis-ci.org/fetch/node-sass-css-importer) [![npmjs](https://badge.fury.io/js/node-sass-css-importer.svg)](https://www.npmjs.com/package/node-sass-css-importer)
 
 The Node Sass CSS Importer allows you to import a CSS file into Sass. Just like the [Sass CSS importer](https://github.com/chriseppstein/sass-css-importer).
 
