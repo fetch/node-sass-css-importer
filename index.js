@@ -1,8 +1,6 @@
 var fs = require('fs')
   , path = require('path');
 
-var sass = require('node-sass');
-
 module.exports = function(options) {
   options = options || {};
 
