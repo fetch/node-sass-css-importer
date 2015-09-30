@@ -34,6 +34,8 @@ module.exports = function(options) {
           done({contents: data.toString()});
         });
         break;
+      } else {
+        return new Error("File " + css_filepath + " doesn't exist!")
       }
     }
   };
