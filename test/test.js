@@ -26,3 +26,11 @@ node.render({
     assert.equal(actual.css.toString(), expected.toString());
   });
 });
+
+node.render({
+  file: path.join(__dirname, 'badsource.scss'),
+  importer: cssImporter({import_paths: [__dirname]})
+}, function(err, actual) {
+  assert.notEqual(err, null);
+  assert.equal(err.message.slice(0, 29), 'Specified CSS file not found!');
+});
