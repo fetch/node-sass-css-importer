@@ -6,7 +6,7 @@ module.exports = function(options) {
 
   var import_paths
     , import_paths_len;
-  
+
   return function(url, prev, done) {
     if (url.slice(0, 4) !== 'CSS:') {
       return done();
@@ -30,11 +30,14 @@ module.exports = function(options) {
       css_filepath = path.join(import_path, css_path);
       if (fs.existsSync(css_filepath)) {
         fs.readFile(css_filepath, function(err, data) {
-          if (err) return console.error(err);
+          if (err) {
+            return done(err);
+          }
           done({contents: data.toString()});
         });
-        break;
+        return;
       }
     }
+    return done(new Error('Specified CSS file not found! ("' + css_path + '" referenced from "' + prev + '")'));
   };
 };
