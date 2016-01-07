@@ -29,15 +29,23 @@ module.exports = function(options) {
       import_path = import_paths[i];
       css_filepath = path.join(import_path, css_path);
       if (fs.existsSync(css_filepath)) {
-        fs.readFile(css_filepath, function(err, data) {
-          if (err) {
-            return done(err);
-          }
-          done({contents: data.toString()});
-        });
-        return;
+        return readPath(css_filepath, done);
+      } else {
+        css_filepath = path.join(import_path, url.slice(4));
+        if (fs.existsSync(css_filepath)) {
+          return readPath(css_filepath, done);
+        }
       }
     }
     return done(new Error('Specified CSS file not found! ("' + css_path + '" referenced from "' + prev + '")'));
   };
 };
+
+function readPath(css_filepath, done) {
+  fs.readFile(css_filepath, function(err, data) {
+    if (err) {
+      return done(err);
+    }
+    done({contents: data.toString()});
+  });
+}
