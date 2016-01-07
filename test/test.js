@@ -35,7 +35,7 @@ tape('can import CSS files correctly from data', function(t) {
   });
 });
 
-tape('handles non existent files', function(t) {
+tape('handles non existent files from file', function(t) {
   t.plan(2);
 
   node.render({
@@ -47,10 +47,29 @@ tape('handles non existent files', function(t) {
   });
 });
 
-node.render({
-  data: 'html{font-size: 10px}@import "CSS:doesntexist";',
-  importer: cssImporter({import_paths: [__dirname]})
-}, function(err, actual) {
-  assert.notEqual(err, null);
-  assert.equal(err.message.slice(0, 29), 'Specified CSS file not found!');
+tape('handles non existent files from data', function(t) {
+  t.plan(2);
+
+  node.render({
+    data: 'html{font-size: 10px}@import "CSS:doesntexist";',
+    importer: cssImporter({import_paths: [__dirname]})
+  }, function(err, actual) {
+    t.notEqual(err, null);
+    t.equal(err.message.slice(0, 29), 'Specified CSS file not found!');
+  });
+});
+
+tape('can inline css content that with a different name', function(t) {
+  t.plan(3);
+
+  node.render({
+    data: 'html{font-size: 10px}@import "CSS:anothercss.txt";',
+    importer: cssImporter({import_paths: [__dirname]})
+  }, function(err, actual) {
+    t.equal(err, null);
+    fs.readFile(path.join(__dirname, 'expected.css'), function(err, expected) {
+      t.equal(err, null);
+      t.equal(actual.css.toString(), expected.toString());
+    });
+  });
 });
