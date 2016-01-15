@@ -4,7 +4,7 @@
   "description": "css importer for node-sass",
   "main": "index.js",
   "scripts": {
-    "test": "node test/test.js"
+    "test": "tap test/test.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/fetch/node-sass-css-importer",
   "devDependencies": {
-    "node-sass": "^3.3.2"
+    "node-sass": "^3.3.2",
+    "tap": "^5.0.0",
+    "tape": "^4.4.0"
   }
 }
