@@ -29,13 +29,12 @@ module.exports = function(options) {
       import_path = import_paths[i];
       css_filepath = path.join(import_path, css_path);
       if (fs.existsSync(css_filepath)) {
-        fs.readFile(css_filepath, function(err, data) {
-          if (err) {
-            return done(err);
-          }
-          done({contents: data.toString()});
-        });
-        return;
+        try {
+          var data = fs.readFileSync(css_filepath, 'utf8').toString();
+          return done({contents: data});
+        } catch(e) {
+          return done(e)
+        }
       }
     }
     return done(new Error('Specified CSS file not found! ("' + css_path + '" referenced from "' + prev + '")'));
